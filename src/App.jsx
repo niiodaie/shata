@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
-import Hero from './components/Hero.jsx';
-import HeroQuoteCarousel from './components/HeroQuoteCarousel.jsx';
-import ShareButton from './components/ShareButton.jsx';
-import Navigation from './components/Navigation.jsx';
+import HeroEnhanced from './components/HeroEnhanced.jsx';
+import ShareButtonEnhanced from './components/ShareButtonEnhanced.jsx';
+import FooterEnhanced from './components/FooterEnhanced.jsx';
+import NavigationEnhanced from './components/NavigationEnhanced.jsx';
 import Feed from './components/Feed.jsx';
-import CreatePostEnhanced from './components/CreatePostEnhanced.jsx';
-import Sidebar from './components/Sidebar.jsx';
 import VideoFeed from './components/VideoFeed.jsx';
 import UserProfile from './components/UserProfile.jsx';
 import AuthModal from './components/AuthModal.jsx';
@@ -14,131 +12,137 @@ import MessagingSystem from './components/MessagingSystem.jsx';
 import GroupsSystem from './components/GroupsSystem.jsx';
 import PrivacySettings from './components/PrivacySettings.jsx';
 
-function App() {
+function AppEnhanced() {
   const [currentView, setCurrentView] = useState('hero');
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showPrivacySettings, setShowPrivacySettings] = useState(false);
-  const [posts, setPosts] = useState([]);
 
-  const handleViewChange = (view) => {
-    setCurrentView(view);
+  const handleEnterCommunity = () => {
+    setCurrentView('feed');
   };
 
-  const handleNewPost = (post) => {
-    setPosts(prev => [post, ...prev]);
+  const handleJoinShataNet = () => {
+    setShowAuthModal(true);
   };
 
   const renderCurrentView = () => {
     switch (currentView) {
       case 'hero':
         return (
-          <div className="min-h-screen bg-gradient-to-br from-pan-red via-deep-black to-pan-green">
-            <Hero />
-            <div className="container mx-auto px-4 py-8">
-              <HeroQuoteCarousel />
-              <div className="text-center py-12">
-                <h2 className="text-3xl font-bold text-gold mb-6">Share Your Story with the World</h2>
-                <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
-                  Every story matters. Every voice counts. Share your heritage, your struggles, your triumphs, 
-                  and your dreams with the global Pan-African community.
+          <div className="min-h-screen">
+            <HeroEnhanced />
+            
+            {/* Share Your Story Section */}
+            <section className="bg-deep-black py-20 px-6">
+              <div className="max-w-4xl mx-auto text-center">
+                <h2 className="text-4xl md:text-5xl font-bold text-gold mb-8">
+                  Share Your Story with the World
+                </h2>
+                <p className="text-xl text-gray-300 mb-12 leading-relaxed">
+                  Every story matters. Every voice counts. Share your heritage, your 
+                  struggles, your triumphs, and your dreams with the global Pan-African community.
                 </p>
-                <div className="flex justify-center space-x-4">
-                  <ShareButton />
-                  <button 
-                    onClick={() => handleViewChange('feed')}
-                    className="bg-gold hover:bg-warm-gold text-black px-8 py-3 rounded-lg font-semibold transition-colors"
+                
+                <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                  <ShareButtonEnhanced />
+                  <button
+                    onClick={handleEnterCommunity}
+                    className="bg-gold hover:bg-warm-gold text-black px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
                   >
                     Enter the Community
                   </button>
-                  <button 
-                    onClick={() => setShowAuthModal(true)}
-                    className="bg-transparent border-2 border-pan-red text-pan-red hover:bg-pan-red hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors"
+                  <button
+                    onClick={handleJoinShataNet}
+                    className="border-2 border-pan-red text-pan-red hover:bg-pan-red hover:text-white px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 transform hover:scale-105"
                   >
                     Join Shata.net
                   </button>
                 </div>
               </div>
-            </div>
-            <footer className="bg-deep-black py-8 text-center">
-              <h3 className="text-gold text-xl font-bold mb-2">Shata.net</h3>
-              <p className="text-gray-400 mb-4">Turning pain into purpose, separation into solidarity.</p>
-              <div className="flex justify-center space-x-8 text-gray-500 text-sm">
-                <span>From Lagos to Harlem</span>
-                <span>Kingston to Paris</span>
-                <span>Global Voice, Local Heart</span>
+            </section>
+
+            {/* Mission Statement */}
+            <section className="bg-charcoal py-16 px-6">
+              <div className="max-w-6xl mx-auto text-center">
+                <h3 className="text-3xl font-bold text-gold mb-8">Shata.net</h3>
+                <p className="text-xl text-gray-300 mb-6">
+                  Turning pain into purpose, separation into solidarity.
+                </p>
+                <div className="flex justify-center items-center space-x-8 text-gray-400">
+                  <span>From Lagos to Harlem</span>
+                  <span>•</span>
+                  <span>Kingston to Paris</span>
+                  <span>•</span>
+                  <span>Global Voice, Local Heart</span>
+                </div>
               </div>
-            </footer>
+            </section>
+
+            <FooterEnhanced />
           </div>
         );
-      
       case 'feed':
         return (
           <div className="min-h-screen bg-deep-black">
-            <Navigation 
-              onViewChange={handleViewChange}
-              onShowAuth={() => setShowAuthModal(true)}
-              onShowPrivacy={() => setShowPrivacySettings(true)}
+            <NavigationEnhanced 
+              currentView={currentView} 
+              setCurrentView={setCurrentView}
+              setShowPrivacySettings={setShowPrivacySettings}
             />
-            <div className="flex max-w-7xl mx-auto">
-              <Sidebar />
-              <main className="flex-1 px-4 py-6">
-                <CreatePostEnhanced onPost={handleNewPost} className="mb-6" />
-                <Feed posts={posts} />
-              </main>
-            </div>
+            <Feed />
           </div>
         );
-      
       case 'videos':
         return (
           <div className="min-h-screen bg-deep-black">
-            <Navigation 
-              onViewChange={handleViewChange}
-              onShowAuth={() => setShowAuthModal(true)}
-              onShowPrivacy={() => setShowPrivacySettings(true)}
+            <NavigationEnhanced 
+              currentView={currentView} 
+              setCurrentView={setCurrentView}
+              setShowPrivacySettings={setShowPrivacySettings}
             />
             <VideoFeed />
           </div>
         );
-      
       case 'groups':
         return (
           <div className="min-h-screen bg-deep-black">
-            <Navigation 
-              onViewChange={handleViewChange}
-              onShowAuth={() => setShowAuthModal(true)}
-              onShowPrivacy={() => setShowPrivacySettings(true)}
+            <NavigationEnhanced 
+              currentView={currentView} 
+              setCurrentView={setCurrentView}
+              setShowPrivacySettings={setShowPrivacySettings}
             />
             <GroupsSystem />
           </div>
         );
-      
-      case 'profile':
-        return (
-          <div className="min-h-screen bg-deep-black">
-            <Navigation 
-              onViewChange={handleViewChange}
-              onShowAuth={() => setShowAuthModal(true)}
-              onShowPrivacy={() => setShowPrivacySettings(true)}
-            />
-            <UserProfile />
-          </div>
-        );
-      
       case 'messages':
         return (
           <div className="min-h-screen bg-deep-black">
-            <Navigation 
-              onViewChange={handleViewChange}
-              onShowAuth={() => setShowAuthModal(true)}
-              onShowPrivacy={() => setShowPrivacySettings(true)}
+            <NavigationEnhanced 
+              currentView={currentView} 
+              setCurrentView={setCurrentView}
+              setShowPrivacySettings={setShowPrivacySettings}
             />
             <MessagingSystem />
           </div>
         );
-      
+      case 'profile':
+        return (
+          <div className="min-h-screen bg-deep-black">
+            <NavigationEnhanced 
+              currentView={currentView} 
+              setCurrentView={setCurrentView}
+              setShowPrivacySettings={setShowPrivacySettings}
+            />
+            <UserProfile />
+          </div>
+        );
       default:
-        return null;
+        return (
+          <div className="min-h-screen">
+            <HeroEnhanced />
+            <FooterEnhanced />
+          </div>
+        );
     }
   };
 
@@ -146,11 +150,12 @@ function App() {
     <div className="App">
       {renderCurrentView()}
       
-      {/* Modals */}
+      {/* Auth Modal */}
       {showAuthModal && (
         <AuthModal onClose={() => setShowAuthModal(false)} />
       )}
-      
+
+      {/* Privacy Settings Modal */}
       {showPrivacySettings && (
         <PrivacySettings onClose={() => setShowPrivacySettings(false)} />
       )}
@@ -158,5 +163,5 @@ function App() {
   );
 }
 
-export default App;
+export default AppEnhanced;
 

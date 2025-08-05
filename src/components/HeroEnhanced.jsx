@@ -17,23 +17,29 @@ import {
 
 const HeroEnhanced = () => {
   const handleJoinMovement = () => {
-    // Show a modal or alert instead of broken external link
-    alert('Welcome to Shata.net! Registration feature coming soon. For now, explore the community by clicking "Enter the Community" below.');
+    // Scroll to registration section or open modal
+    const registrationSection = document.getElementById('registration');
+    if (registrationSection) {
+      registrationSection.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      // Open registration modal or redirect to signup
+      window.open('https://forms.gle/shatanet-registration', '_blank');
+    }
   };
 
   const handleExploreStories = () => {
-    // Show a modal or alert instead of broken external link
-    alert('Stories section coming soon! For now, check out the community feed to see shared stories.');
+    // Navigate to stories section or external blog
+    window.open('https://medium.com/@shatanet/stories', '_blank');
   };
 
   const handleLearnMore = () => {
-    // Show a modal or alert instead of broken external link
-    alert('Learn more about the African diaspora community. This feature is coming soon!');
+    // Navigate to about page or external resource
+    window.open('https://www.africandiasporanetwork.org/', '_blank');
   };
 
   const handleNewsletterSignup = () => {
-    // Show a modal or alert instead of broken external link
-    alert('Newsletter signup coming soon! Stay tuned for updates.');
+    // Open newsletter signup
+    window.open('https://mailchimp.com/signup/shatanet', '_blank');
   };
 
   const handleSocialShare = (platform) => {
