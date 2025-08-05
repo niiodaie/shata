@@ -19,14 +19,14 @@ import {
   X
 } from 'lucide-react';
 
-const NavigationEnhanced = ({ currentView, onViewChange, onShowAuth, onShowPrivacy }) => {
+const NavigationEnhanced = ({ onViewChange, onShowAuth, onShowPrivacy }) => {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [notifications] = useState(3);
   const [messages] = useState(2);
 
   const navItems = [
-    { id: 'feed', icon: Home, label: 'Home' },
+    { id: 'feed', icon: Home, label: 'Home', active: true },
     { id: 'videos', icon: Video, label: 'Videos' },
     { id: 'groups', icon: Users, label: 'Groups' },
     { id: 'messages', icon: MessageCircle, label: 'Messages', badge: messages }
@@ -58,7 +58,7 @@ const NavigationEnhanced = ({ currentView, onViewChange, onShowAuth, onShowPriva
                   onClick={() => handleNavClick(item.id)}
                   className={`
                     flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors relative
-                    ${currentView === item.id 
+                    ${item.active 
                       ? 'bg-gold text-black' 
                       : 'text-gray-300 hover:text-white hover:bg-gold/10'
                     }
@@ -211,7 +211,7 @@ const NavigationEnhanced = ({ currentView, onViewChange, onShowAuth, onShowPriva
                   onClick={() => handleNavClick(item.id)}
                   className={`
                     w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors
-                    ${currentView === item.id 
+                    ${item.active 
                       ? 'bg-gold text-black' 
                       : 'text-gray-300 hover:text-white hover:bg-gold/10'
                     }

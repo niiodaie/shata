@@ -9,6 +9,11 @@
       }
     }
   ],
-  "installCommand": "pnpm install"
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
 }
 
