@@ -86,8 +86,8 @@ function AppEnhanced() {
           <div className="min-h-screen bg-deep-black">
             <NavigationEnhanced 
               currentView={currentView} 
-              setCurrentView={setCurrentView}
-              setShowPrivacySettings={setShowPrivacySettings}
+              onViewChange={setCurrentView}
+              onShowPrivacy={() => setShowPrivacySettings(true)}
             />
             <Feed />
           </div>
@@ -97,8 +97,8 @@ function AppEnhanced() {
           <div className="min-h-screen bg-deep-black">
             <NavigationEnhanced 
               currentView={currentView} 
-              setCurrentView={setCurrentView}
-              setShowPrivacySettings={setShowPrivacySettings}
+              onViewChange={setCurrentView}
+              onShowPrivacy={() => setShowPrivacySettings(true)}
             />
             <VideoFeed />
           </div>
@@ -108,8 +108,8 @@ function AppEnhanced() {
           <div className="min-h-screen bg-deep-black">
             <NavigationEnhanced 
               currentView={currentView} 
-              setCurrentView={setCurrentView}
-              setShowPrivacySettings={setShowPrivacySettings}
+              onViewChange={setCurrentView}
+              onShowPrivacy={() => setShowPrivacySettings(true)}
             />
             <GroupsSystem />
           </div>
@@ -119,8 +119,8 @@ function AppEnhanced() {
           <div className="min-h-screen bg-deep-black">
             <NavigationEnhanced 
               currentView={currentView} 
-              setCurrentView={setCurrentView}
-              setShowPrivacySettings={setShowPrivacySettings}
+              onViewChange={setCurrentView}
+              onShowPrivacy={() => setShowPrivacySettings(true)}
             />
             <MessagingSystem />
           </div>
@@ -130,8 +130,8 @@ function AppEnhanced() {
           <div className="min-h-screen bg-deep-black">
             <NavigationEnhanced 
               currentView={currentView} 
-              setCurrentView={setCurrentView}
-              setShowPrivacySettings={setShowPrivacySettings}
+              onViewChange={setCurrentView}
+              onShowPrivacy={() => setShowPrivacySettings(true)}
             />
             <UserProfile />
           </div>
